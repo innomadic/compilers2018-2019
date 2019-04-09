@@ -1,0 +1,22 @@
+PARSER_BEGIN(MiniJavaParser)
+   class MiniJavaParser  {
+    public static void main( String[] args ) throws ParseException, TokenMgrError {
+      MiniJavaParser parser = new MiniJavaParser( System.in ) ;
+      parser.Start() ;}
+   }
+PARSER_END(MiniJavaParser)
+/* For the regular expressions on the right, the token on the left will be returned: */
+TOKEN : {
+      < #DIGIT: ["0"-"9"] >
+    | < #WHITESPACE : "\n" | "\r" | "\r\n" | "\t" | "\n" | " ">
+    | < IF: "if" >
+}
+/* The regular expressions here will be skipped during lexical analysis: */
+SKIP : {
+<"//(.|<WHITESPACE>)*" ("\n" | "\r" | "\r\n")>
+ | " " | "\t" | "\n"
+}
+/* If we have a substring that does not match any of the regular expressions in TOKEN or SKIP, JavaCC will automatically throw an error. */
+void Start() :
+{}
+{ (<IF>)* }
