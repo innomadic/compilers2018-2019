@@ -1,2 +1,2 @@
-javacc -debug_parser scannerparser.jj
+javacc -debug_token_manager scannerparser.jj
 javac *.java

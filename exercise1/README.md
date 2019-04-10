@@ -11,5 +11,5 @@
 2. Run build.bat
 3. Read error messages
 4. If there are error messages, modify scannerparser.jj to recognize more tokens.  Go to step 2.
-5. Otherwise, run `java MyParser` and provide some sample input.
-4. Run `java MyParser < program.mjava`
+5. Otherwise, run `java MiniJavaParser` and provide some sample input.
+4. Run `java MiniJavaParser < program.mjava`
