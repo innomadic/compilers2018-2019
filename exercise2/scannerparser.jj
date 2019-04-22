@@ -1,0 +1,41 @@
+PARSER_BEGIN(MiniJavaParser)
+   class MiniJavaParser  {
+    public static void main( String[] args ) throws ParseException, TokenMgrError {
+      MiniJavaParser parser = new MiniJavaParser( System.in ) ;
+      parser.Goal() ;}
+   }
+PARSER_END(MiniJavaParser)
+/* For the regular expressions on the right, the token on the left will be returned: */
+TOKEN : {
+      < #DIGIT: ["0"-"9"] >
+    | < #WHITESPACE : "\n" | "\r" | "\r\n" | "\t" | "\n" | " " | "\r">
+    | < IF: "if" >
+    | < CLASS: "class">
+   |  < PUBLIC: "public">
+  |  < STATIC : "static">
+  |  < VOID : "void">
+  |  < MAIN : "main">
+  |  < STRING : "String">
+   |  < IDENTIFIER : (["a"-"z"] | ["A"-"Z"]) ((["a"-"z"] | ["A"-"Z"]) | <DIGIT>)* >
+}
+/* The regular expressions here will be skipped during lexical analysis: */
+SKIP : {
+<"//(.|<WHITESPACE>)*" ("\n" | "\r" | "\r\n")>
+ | " " | "\t" | "\n"
+}
+/* If we have a substring that does not match any of the regular expressions in TOKEN or SKIP, JavaCC will automatically throw an error. */
+void Goal() :
+{}
+{ Main_Class() ( Class_Declaration() )* <EOF>}
+
+void Main_Class() :
+{}
+{ "class" <IDENTIFIER> "{" "public" "static" "void" "main" "(" "String" "[" "]" <IDENTIFIER> ")" "{" Statement() "}" "}" }
+
+void Statement() :
+{}
+{ <IDENTIFIER> "=" <IDENTIFIER> ";"}
+
+void Class_Declaration() :
+{}
+{ "class" <IDENTIFIER>}

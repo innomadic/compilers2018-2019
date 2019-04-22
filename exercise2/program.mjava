@@ -1,0 +1,5 @@
+class SimpleProg {
+  public static void main(String[] a) {
+    x = y;
+  }
+}
