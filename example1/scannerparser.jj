@@ -1,8 +1,9 @@
 PARSER_BEGIN(MyParser)
    class MyParser {
-    public static void main( String[] args ) throws ParseException, TokenMgrError {
-      MyParser parser = new MyParser( System.in ) ;
-      parser.Start() ;}
+      public static void main( String[] args ) throws ParseException, TokenMgrError {
+        MyParser parser = new MyParser( System.in ) ;
+        parser.Start() ;
+      }
    }
 PARSER_END(MyParser)
 /* For the regular expressions on the right, the token on the left will be returned: */
@@ -17,7 +18,7 @@ TOKEN : {
 /* The regular expressions here will be skipped during lexical analysis: */
 SKIP : {
 <"--" (["a"-"z"])* ("\n" | "\r" | "\r\n")>
- | " " | "\t" | "\n"
+ | " " | "\t" | "\n" | "\r"
 }
 /* If we have a substring that does not match any of the regular expressions in TOKEN or SKIP, JavaCC will automatically throw an error. */
 void Start() :

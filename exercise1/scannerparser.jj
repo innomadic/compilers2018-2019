@@ -8,8 +8,9 @@ PARSER_END(MiniJavaParser)
 /* For the regular expressions on the right, the token on the left will be returned: */
 TOKEN : {
       < #DIGIT: ["0"-"9"] >
-    | < #WHITESPACE : "\n" | "\r" | "\r\n" | "\t" | "\n" | " ">
+    | < #WHITESPACE : "\n" | "\r" | "\r\n" | "\t" | "\n" | " " | "\r">
     | < IF: "if" >
+    | < CLASS: "class">
 }
 /* The regular expressions here will be skipped during lexical analysis: */
 SKIP : {
@@ -19,4 +20,4 @@ SKIP : {
 /* If we have a substring that does not match any of the regular expressions in TOKEN or SKIP, JavaCC will automatically throw an error. */
 void Start() :
 {}
-{ (<IF>)* }
+{ (<IF>|<CLASS>)* }
