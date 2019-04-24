@@ -1,3 +1,3 @@
-REM run 
-call javacc -debug_token_manager scannerparser.jj
+REM run
+call javacc -debug_parser scannerparser.jj
 call javac *.java
